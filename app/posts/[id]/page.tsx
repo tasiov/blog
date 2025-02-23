@@ -11,13 +11,10 @@ export async function generateStaticParams() {
   }))
 }
 
-interface PageProps {
-  params: {
-    id: string
-  }
-}
 
-export default async function Post({ params }: PageProps) {
+type Params = Promise<{ id: string }>
+
+export default async function Post({ params }: { params: Params }) {
   try {
     const { id } = await params
     const post = await getPostData(id)
