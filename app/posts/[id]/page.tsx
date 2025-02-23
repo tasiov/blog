@@ -1,6 +1,7 @@
 import { getPostData, getSortedPostsData } from '@/lib/posts'
 import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
+import ThemeToggle from '@/components/ThemeToggle'
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData()
@@ -22,12 +23,17 @@ export default async function Post({ params }: PageProps) {
     
     return (
       <article className="max-w-4xl mx-auto py-8 px-4">
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-        <time className="text-gray-600 block mb-8">
-          {format(new Date(post.date), 'MMMM d, yyyy')}
-        </time>
+        <div className="flex justify-between items-start mb-8">
+          <div>
+            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+            <time className="text-gray-600 dark:text-gray-400 block">
+              {format(new Date(post.date), 'MMMM d, yyyy')}
+            </time>
+          </div>
+          <ThemeToggle />
+        </div>
         <div 
-          className="prose prose-lg"
+          className="prose dark:prose-invert prose-lg"
           dangerouslySetInnerHTML={{ __html: post.content }} 
         />
       </article>
