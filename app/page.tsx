@@ -2,6 +2,7 @@ import { getSortedPostsData } from '@/lib/posts'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import ThemeToggle from '@/components/ThemeToggle'
+import SocialLinks from '@/components/SocialLinks'
 
 export default function Home() {
   const posts = getSortedPostsData()
@@ -9,18 +10,21 @@ export default function Home() {
 
   return (
     <main className="max-w-4xl mx-auto py-8 px-4">
-      <div className="flex justify-between items-center mb-16">
+      <div className="flex justify-between items-start mb-16">
         <section>
-          <h1 className="text-4xl font-bold mb-4 flex items-center gap-2">
-            tasio.dev
-          </h1>
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-4xl font-bold">tasio.dev</h1>
+            <div className="flex items-center gap-4">
+              <SocialLinks />
+              <ThemeToggle />
+            </div>
+          </div>
           <div className="prose dark:prose-invert prose-lg">
             <p>
               Hey! My name is Tasio, and this is my personal blog. I typically write about my experiences with software development.
             </p>
           </div>
         </section>
-        <ThemeToggle />
       </div>
       <section>
         <h2 className="text-2xl font-bold mb-8">Latest Posts</h2>

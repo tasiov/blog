@@ -2,6 +2,7 @@ import { getPostData, getSortedPostsData } from '@/lib/posts'
 import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
 import ThemeToggle from '@/components/ThemeToggle'
+import SocialLinks from '@/components/SocialLinks'
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData()
@@ -30,7 +31,10 @@ export default async function Post({ params }: PageProps) {
               {format(new Date(post.date), 'MMMM d, yyyy')}
             </time>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-4">
+            <SocialLinks />
+            <ThemeToggle />
+          </div>
         </div>
         <div 
           className="prose dark:prose-invert prose-lg"
