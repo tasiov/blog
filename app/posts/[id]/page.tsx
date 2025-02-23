@@ -5,6 +5,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import SocialLinks from '@/components/SocialLinks'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData()
@@ -66,11 +67,13 @@ export default async function Post({ params }: { params: Params }) {
           Back to Blog
         </Link>
 
-        <div className="mb-8">
-          <img 
+        <div className="mb-8 relative h-64">
+          <Image 
             src={post.imageUrl} 
             alt={`Abstract visualization for ${post.title}`}
-            className="w-full h-64 object-cover rounded-lg shadow-lg"
+            fill
+            priority
+            className="object-cover rounded-lg shadow-lg"
           />
         </div>
         <div className="flex justify-between items-start mb-8">
