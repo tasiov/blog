@@ -15,6 +15,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "tasio.dev",
   description: "A personal blog that covers my software development journey",
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' }
+    ]
+  }
 };
 
 export default function RootLayout({
