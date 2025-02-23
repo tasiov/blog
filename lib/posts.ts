@@ -3,6 +3,7 @@ import path from "path"
 import matter from "gray-matter"
 import { remark } from "remark"
 import html from "remark-html"
+import { generatePostImage } from "./imageGeneration"
 
 const postsDirectory = path.join(process.cwd(), "posts")
 
@@ -11,6 +12,7 @@ export interface PostData {
   title: string
   date: string
   content: string
+  imageUrl: string
 }
 
 export function getSortedPostsData() {
@@ -57,10 +59,17 @@ export async function getPostData(id: string): Promise<PostData> {
     .process(matterResult.content)
   const content = processedContent.toString()
 
+  // Generate unique image for the post
+  const imageUrl = generatePostImage(
+    matterResult.data.title,
+    matterResult.content
+  )
+
   // Combine the data with the id
   return {
     id,
     content,
+    imageUrl,
     ...(matterResult.data as { date: string; title: string })
   }
 }
